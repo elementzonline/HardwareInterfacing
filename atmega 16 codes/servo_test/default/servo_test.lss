@@ -1,0 +1,291 @@
+
+servo_test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000011c  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000170  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 00000078  00000000  00000000  00000190  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   0000023e  00000000  00000000  00000208  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000161  00000000  00000000  00000446  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   000001ff  00000000  00000000  000005a7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000060  00000000  00000000  000007a8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000118  00000000  00000000  00000808  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    000000c8  00000000  00000000  00000920  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_ranges 00000078  00000000  00000000  000009e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ec e1       	ldi	r30, 0x1C	; 28
+  3a:	f1 e0       	ldi	r31, 0x01	; 1
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
+
+0000003e <.do_copy_data_loop>:
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+
+00000042 <.do_copy_data_start>:
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <.do_copy_data_loop>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a0 36       	cpi	r26, 0x60	; 96
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	02 d0       	rcall	.+4      	; 0x5e <main>
+  5a:	5e c0       	rjmp	.+188    	; 0x118 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <main>:
+
+
+
+
+int main(void)
+{
+  5e:	8f b5       	in	r24, 0x2f	; 47
+  60:	82 6a       	ori	r24, 0xA2	; 162
+  62:	8f bd       	out	0x2f, r24	; 47
+//void 
+
+void init_hardware_pwm1(void)
+{
+  TCCR1A |= (BIT7|BIT5|BIT1);      // configuration for timer on compare mode for pwm configuration
+  TCCR1B |= (BIT4|BIT3|BIT1|BIT0);
+  64:	8e b5       	in	r24, 0x2e	; 46
+  66:	8b 61       	ori	r24, 0x1B	; 27
+  68:	8e bd       	out	0x2e, r24	; 46
+  
+  
+  
+  ICR1=2499;                      // selecting pwm period to 20 ms 
+  6a:	83 ec       	ldi	r24, 0xC3	; 195
+  6c:	99 e0       	ldi	r25, 0x09	; 9
+  6e:	97 bd       	out	0x27, r25	; 39
+  70:	86 bd       	out	0x26, r24	; 38
+  
+  DDRB|=(BIT1|BIT2);              // Pwm out to output PORTD4 and PORTD5
+  72:	87 b3       	in	r24, 0x17	; 23
+  74:	86 60       	ori	r24, 0x06	; 6
+  76:	87 bb       	out	0x17, r24	; 23
+    Motor_PWM1 = lower_bound;  
+}
+
+void change_speed_pwm1(int speed)
+{
+  Motor_PWM1 = speed;
+  78:	63 e1       	ldi	r22, 0x13	; 19
+  7a:	71 e0       	ldi	r23, 0x01	; 1
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  7c:	28 ec       	ldi	r18, 0xC8	; 200
+  7e:	30 e0       	ldi	r19, 0x00	; 0
+  80:	4a e5       	ldi	r20, 0x5A	; 90
+  82:	50 e0       	ldi	r21, 0x00	; 0
+  84:	7b bd       	out	0x2b, r23	; 43
+  86:	6a bd       	out	0x2a, r22	; 42
+  88:	80 e2       	ldi	r24, 0x20	; 32
+  8a:	9e e4       	ldi	r25, 0x4E	; 78
+  8c:	f9 01       	movw	r30, r18
+  8e:	31 97       	sbiw	r30, 0x01	; 1
+  90:	f1 f7       	brne	.-4      	; 0x8e <main+0x30>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  92:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  94:	d9 f7       	brne	.-10     	; 0x8c <main+0x2e>
+  96:	5b bd       	out	0x2b, r21	; 43
+  98:	4a bd       	out	0x2a, r20	; 42
+  9a:	80 e2       	ldi	r24, 0x20	; 32
+  9c:	9e e4       	ldi	r25, 0x4E	; 78
+  9e:	f9 01       	movw	r30, r18
+  a0:	31 97       	sbiw	r30, 0x01	; 1
+  a2:	f1 f7       	brne	.-4      	; 0xa0 <main+0x42>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  a4:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  a6:	d9 f7       	brne	.-10     	; 0x9e <main+0x40>
+  a8:	ed cf       	rjmp	.-38     	; 0x84 <main+0x26>
+
+000000aa <increase_speed_pwm1>:
+
+}
+return 0;
+}
+void increase_speed_pwm1(int increment)
+{
+  aa:	2a b5       	in	r18, 0x2a	; 42
+  ac:	3b b5       	in	r19, 0x2b	; 43
+  ae:	ac 01       	movw	r20, r24
+  b0:	28 0f       	add	r18, r24
+  b2:	39 1f       	adc	r19, r25
+  b4:	24 51       	subi	r18, 0x14	; 20
+  b6:	31 40       	sbci	r19, 0x01	; 1
+  b8:	38 f4       	brcc	.+14     	; 0xc8 <increase_speed_pwm1+0x1e>
+  if ( Motor_PWM1 + increment <= upper_bound)
+    Motor_PWM1 = Motor_PWM1 + increment;
+  ba:	8a b5       	in	r24, 0x2a	; 42
+  bc:	9b b5       	in	r25, 0x2b	; 43
+  be:	48 0f       	add	r20, r24
+  c0:	59 1f       	adc	r21, r25
+  c2:	5b bd       	out	0x2b, r21	; 43
+  c4:	4a bd       	out	0x2a, r20	; 42
+  c6:	08 95       	ret
+  else
+    Motor_PWM1 = upper_bound;
+  c8:	83 e1       	ldi	r24, 0x13	; 19
+  ca:	91 e0       	ldi	r25, 0x01	; 1
+  cc:	9b bd       	out	0x2b, r25	; 43
+  ce:	8a bd       	out	0x2a, r24	; 42
+  d0:	08 95       	ret
+
+000000d2 <decrease_speed_pwm1>:
+}
+
+void decrease_speed_pwm1(int decrement)
+{
+  d2:	2a b5       	in	r18, 0x2a	; 42
+  d4:	3b b5       	in	r19, 0x2b	; 43
+  d6:	ac 01       	movw	r20, r24
+  d8:	28 1b       	sub	r18, r24
+  da:	39 0b       	sbc	r19, r25
+  dc:	2a 35       	cpi	r18, 0x5A	; 90
+  de:	31 05       	cpc	r19, r1
+  e0:	28 f0       	brcs	.+10     	; 0xec <decrease_speed_pwm1+0x1a>
+  if (Motor_PWM1 - decrement >= lower_bound)
+    Motor_PWM1 = Motor_PWM1 - decrement;
+  e2:	8a b5       	in	r24, 0x2a	; 42
+  e4:	9b b5       	in	r25, 0x2b	; 43
+  e6:	84 1b       	sub	r24, r20
+  e8:	95 0b       	sbc	r25, r21
+  ea:	02 c0       	rjmp	.+4      	; 0xf0 <decrease_speed_pwm1+0x1e>
+  else
+    Motor_PWM1 = lower_bound;  
+  ec:	8a e5       	ldi	r24, 0x5A	; 90
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	9b bd       	out	0x2b, r25	; 43
+  f2:	8a bd       	out	0x2a, r24	; 42
+  f4:	08 95       	ret
+
+000000f6 <change_speed_pwm1>:
+}
+
+void change_speed_pwm1(int speed)
+{
+  f6:	9b bd       	out	0x2b, r25	; 43
+  f8:	8a bd       	out	0x2a, r24	; 42
+  Motor_PWM1 = speed;
+}
+  fa:	08 95       	ret
+
+000000fc <init_hardware_pwm1>:
+
+//void 
+
+void init_hardware_pwm1(void)
+{
+  fc:	8f b5       	in	r24, 0x2f	; 47
+  fe:	82 6a       	ori	r24, 0xA2	; 162
+ 100:	8f bd       	out	0x2f, r24	; 47
+  TCCR1A |= (BIT7|BIT5|BIT1);      // configuration for timer on compare mode for pwm configuration
+  TCCR1B |= (BIT4|BIT3|BIT1|BIT0);
+ 102:	8e b5       	in	r24, 0x2e	; 46
+ 104:	8b 61       	ori	r24, 0x1B	; 27
+ 106:	8e bd       	out	0x2e, r24	; 46
+  
+  
+  
+  ICR1=2499;                      // selecting pwm period to 20 ms 
+ 108:	83 ec       	ldi	r24, 0xC3	; 195
+ 10a:	99 e0       	ldi	r25, 0x09	; 9
+ 10c:	97 bd       	out	0x27, r25	; 39
+ 10e:	86 bd       	out	0x26, r24	; 38
+  
+  DDRB|=(BIT1|BIT2);              // Pwm out to output PORTD4 and PORTD5
+ 110:	87 b3       	in	r24, 0x17	; 23
+ 112:	86 60       	ori	r24, 0x06	; 6
+ 114:	87 bb       	out	0x17, r24	; 23
+  
+}
+ 116:	08 95       	ret
+
+00000118 <_exit>:
+ 118:	f8 94       	cli
+
+0000011a <__stop_program>:
+ 11a:	ff cf       	rjmp	.-2      	; 0x11a <__stop_program>
