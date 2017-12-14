@@ -1,6 +1,6 @@
 # Hardware Interfacing using AVR Microcontrollers
 
-[We @ ElementzOnline](https://www.elementzonline.com) are releasing the source codes of various hardware interfacing developed by our Development Team to the public domain. 
+[We @ ElementzOnline](https://www.elementzonline.com) releasing the source codes of various hardware interfacing developed by our Development Team to the public domain. 
 
 ### You can see the interfacing guides on our blog [Elementz Tech Blog](https://elementztechblog.wordpress.com/)! :+1:
 
